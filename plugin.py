@@ -98,56 +98,48 @@ with open('json/items.json', 'w') as json_file:
 
 
 # ! ---------------------------------------------------------
-# Pour récupérer les liens, si il y a un seul <a> ou si on a besoin que du premier :
+# Pour récupérer le premier lien
     # url = article.select_one(url_path).get('href')
-# Si on a besoin de deuxieme ou autre :
+# Si on a besoin du deuxième lien
     # url = article.select(url_path)[1].get('href')
 
-# dateTest = "il y a 2 jours"
-# test = MYNEWS.DATE_Conversion(dateTest,isFrench=None, dbg=None)
-# print(test)
+# ! ---------------------------------------------------------
+# Scraping d'un fichier JSON
+    # def scrape_articles_json(url, data):
+    #     response = requests.get(url)
+    #     # Analyser le contenu JSON de la réponse
+    #     json_data = json.loads(response.text)
+    #     # Trouver tous les articles dans les résultats
+    #     articles = json_data['results']['result']
 
+    #     for article in articles:
+    #         # Créer un dictionnaire pour stocker les informations de l'article
+    #         item = {}
 
-# test = "https://www.guadeloupe.franceantilles.fr/&"
-# print(unescape(test))
-# print(escape(test))
-# print(escape(unescape(test)))
+    #         item['title'] = article['title']
 
-# def scrape_articles_json(url, data):
-#     response = requests.get(url)
-#     # Analyser le contenu JSON de la réponse
-#     json_data = json.loads(response.text)
-#     # Trouver tous les articles dans les résultats
-#     articles = json_data['results']['result']
+    #         url = article['location']
+    #         if start_url in url:
+    #             item['url'] = url
+    #         else:
+    #             item['url'] = start_url + url
 
-#     for article in articles:
-#         # Créer un dictionnaire pour stocker les informations de l'article
-#         item = {}
+    #         date = article['indexdate']
+    #         item['date'] = MYNEWS.DATE_Conversion(date,isFrench=None, dbg=None)
 
-#         item['title'] = article['title']
+    #         item['content'] = article['description']
 
-#         url = article['location']
-#         if start_url in url:
-#             item['url'] = url
-#         else:
-#             item['url'] = start_url + url
+    #         # Ajouter le dictionnaire à la liste
+    #         data["items"].append(item)
 
-#         date = article['indexdate']
-#         item['date'] = MYNEWS.DATE_Conversion(date,isFrench=None, dbg=None)
+    #     return data
 
-#         item['content'] = article['description']
+    # data = {
+    #     "Site" : url,
+    #     "items": []
+    # }
 
-#         # Ajouter le dictionnaire à la liste
-#         data["items"].append(item)
-
-#     return data
-
-# data = {
-#     "Site" : url,
-#     "items": []
-# }
-
-# if isJson:
-#     data = scrape_articles_json(url, data)
-# else:
-#     items = scrape_articles(url, data)
+    # if isJson:
+    #     data = scrape_articles_json(url, data)
+    # else:
+    #     items = scrape_articles(url, data)
