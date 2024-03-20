@@ -1,10 +1,12 @@
 from datetime import datetime
 from dateparser import parse as parse_dp
 from dateutil.parser import parse as parse_du
-class MYNEWS:
+
+
+class DateController:
 
     @staticmethod
-    def DATE_Conversion(date, isFrench=None,dbg=False):
+    def date_conversion(date, is_french=False, debug=False):
         replacements = {
             '&nbsp;': ' ',
             "il y a ": '',
@@ -21,8 +23,8 @@ class MYNEWS:
             "Février": "Feb",
             "fevrier": "Feb",
             "février": "Feb",
-            "Mars": "Mar",
-            "mars": "Mar",
+            # "Mars": "Mar",
+            # "mars": "Mar",
             "Avril": "Apr",
             "avril": "Apr",
             "Mai": "May",
@@ -43,23 +45,25 @@ class MYNEWS:
             "Decembre": "Dec",
             "Décembre": "Dec",
             "decembre": "Dec",
-            "décembre": "Dec"
+            "décembre": "Dec",
+            # "Mercredi": ""
         }
 
         # Replace French words with English equivalents
-        for old, new in replacements.items():
-            date = date.replace(old, new)
+        # for old, new in replacements.items():
+        #     date = date.replace(old, new).strip()
 
         # Utiliser dateparser pour analyser la date
-        if not isFrench:
+        if is_french:
             date_date = parse_dp(date)
         else:
             date_date = parse_du(date, dayfirst=True)
 
-        if dbg: 
+        if debug:
             print(f'\n\nAnnée = {date_date.year}')
             print('\nDate OK' if date_date.year > 1970 else '\nPROBLEME - Date FR')
             print(f'\nDate Finale = {date_date.strftime("%a, %d %b %Y %H:%M:%S GMT")}')
 
         # return date_date
         return date_date.strftime("%Y-%m-%d %H:%M:%S")  # return a string
+        # return date
